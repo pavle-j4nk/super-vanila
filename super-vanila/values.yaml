@@ -1,0 +1,15 @@
+container:
+  port: 80
+
+service:
+  port: 80
+
+ingress:
+  path: /
+  pathType: Prefix
+
+container:
+  resources:
+    limits:
+      memory: "128Mi"
+      cpu: "50m"

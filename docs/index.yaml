@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  super-vanila:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-01-25T17:26:05.410699+01:00"
+    description: Basic deplotment, service and ingress chart
+    digest: 162a9cb286b6951cfdf6bedae2256d4faadc24f773f14ea799f00106720e4c6c
+    name: super-vanila
+    type: application
+    urls:
+    - https://pavle-j4nk.github.io/super-vanila/super-vanila-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-01-25T17:26:05.410076+01:00"

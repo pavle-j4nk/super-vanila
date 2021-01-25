@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.application.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.application.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.application.name }}
+      annotations:
+        # This will be unoque on every upgrade causing pod restart
+        rollme: {{ randAlphaNum 5 | quote }}
+    spec:
+      containers:
+      - name: {{ .Values.application.name }}
+        image: {{ .Values.container.image }}
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: {{ .Values.container.resources.limits.memory }}
+            cpu: {{ .Values.container.resources.limits.cpu }}
+        ports:
+        - containerPort: {{ .Values.container.port }}
+        env:
+        {{- range .Values.env }}
+        - name: {{ .name }}
+          value: {{ .value }}
+        {{- end }}
+      imagePullSecrets:
+        - name: regcred
