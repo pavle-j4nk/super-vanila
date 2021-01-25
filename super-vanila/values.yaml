@@ -7,6 +7,7 @@ service:
 ingress:
   path: /
   pathType: Prefix
+  rewrite-path: /
 
 container:
   resources:
