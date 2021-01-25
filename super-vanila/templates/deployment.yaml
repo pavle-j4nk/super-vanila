@@ -18,10 +18,12 @@ spec:
       - name: {{ .Values.application.name }}
         image: {{ .Values.container.image }}
         imagePullPolicy: Always
+        {{ if not .Values.container.resource.noLimits }}
         resources:
           limits:
             memory: {{ .Values.container.resources.limits.memory }}
             cpu: {{ .Values.container.resources.limits.cpu }}
+        {{ end }}
         ports:
         - containerPort: {{ .Values.container.port }}
         env:
