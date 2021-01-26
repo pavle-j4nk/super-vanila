@@ -4,7 +4,16 @@ metadata:
   name: {{ .Values.application.name }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.ingress.rewritePath }}
+    {{ if .Values.ingress.certIssuer }}
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    {{ end }}
 spec:
+  {{ if .Values.ingress.certIssuer }}
+  tls:
+  - hosts:
+    - {{ .Values.ingress.host }}
+    secretName: {{ .Values.application.name }}-tls
+  {{ end }}
   rules:
   - http:
       paths:
