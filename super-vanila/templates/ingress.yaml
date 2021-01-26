@@ -5,7 +5,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.ingress.rewritePath }}
     {{ if .Values.ingress.certIssuer }}
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.certIssuer }}
     {{ end }}
 spec:
   {{ if .Values.ingress.certIssuer }}
