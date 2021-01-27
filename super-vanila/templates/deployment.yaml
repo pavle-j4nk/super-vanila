@@ -31,5 +31,7 @@ spec:
         - name: {{ .name }}
           value: {{ .value }}
         {{- end }}
+      {{ if .Values.container.imagePullSecret }}
       imagePullSecrets:
-        - name: regcred
+        - name: {{ .Values.container.imagePullSecret }}
+     {{ end }}
