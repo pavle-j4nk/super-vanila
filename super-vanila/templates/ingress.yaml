@@ -3,7 +3,9 @@ kind: Ingress
 metadata:
   name: {{ .Values.application.name }}
   annotations:
+    {{ if .Values.ingress.rewritePath }}
     nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.ingress.rewritePath }}
+    {{ end }}
     {{ if .Values.ingress.certIssuer }}
     cert-manager.io/cluster-issuer: {{ .Values.ingress.certIssuer }}
     {{ end }}
