@@ -7,6 +7,9 @@ metadata:
     {{ if .Values.ingress.certIssuer }}
     cert-manager.io/cluster-issuer: {{ .Values.ingress.certIssuer }}
     {{ end }}
+    {{ if .Values.ingress.cors }}
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    {{ end }}
 spec:
   {{ if .Values.ingress.certIssuer }}
   tls:
